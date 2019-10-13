@@ -9,6 +9,12 @@ Input: `Hello, there`
 
 Output: `HELLO, THERE`
 
+# Answer
+```swift
+var helloThere = "Hello, there"
+helloThere = helloThere.uppercased()
+```
+
 2. **Given a String, return a String alternating between uppercase and lowercase letters**
 
 
@@ -33,42 +39,111 @@ Input: `[1,5,2,4,1,4]`
 
 Output: `5`
 
+# Answer
+```swift
+var largestInArray = [1, 5, 2, 4, 1, 4]
+var largestNum = largestInArray[0]
+for num in largestInArray {
+    if num >= largestNum {
+        largestNum = num
+    }
+}
+print(largestNum)
+```
+
 2. **Given an array of type [Int], return the smallest element**
 
 Input: `[1,5,2,4,1,4]`
 
 Output: `1`
-
+# Answer
+```swift
+var smallestInArr = [1, 5, 2, 4, 1, 4]
+var smallestNum = smallestInArr[0]
+for num in smallestInArr {
+    if num <= smallestNum {
+        smallestNum = num
+    }
+}
+```
 3. **Given an array of type [Int], return its sum**
 
 Input: `[1,5,2,4,1,4]`
 
 Output: `17`
-
+# Answer 
+```swift
+var sumArr = [1, 5, 2, 4, 1, 4]
+var sum = 0
+for num in sumArr {
+    sum += num
+}
+print(sum)
+```
 4. **Given an array of type [Double], return its average**
 
 Input: `[3,4.5,7.5,2,1]`
 
 Output: `3.6`
-
+```swift
+var doubleArr: [Double] = [3,4.5,7.5,2,1]
+var doubleSum: Double = 0
+var doubleCount = Double(doubleArr.count)
+for num in doubleArr {
+    doubleSum += num
+}
+let doubleAvg = doubleSum / doubleCount
+print(doubleAvg)
+```
 5. **Given an array of type [Double] and a Double, return the sum of all numbers in the array greater than a given number**
 
 Input: `[3,4.5,7.5,2,1], 3`
 
 Output: `12`
 
+```swift
+var doubleArray: [Double] = [3,4.5,7.5,2,1]
+var doubleSum2: Double = 0
+for num in doubleArray where num > 3 {
+    doubleSum2 += num
+}
+```
 
 6. **Given an array of type [Double], return the product of all the elements**
 
 Input: `[3,4.5,7.5,2,1]`
 
 Output: `202.5`
+```swift
+var doubleArray3: [Double] = [3,4.5,7.5,2,1]
+var doubleProduct: Double = 1
+for num in doubleArray3 {
+    doubleProduct *= num
+}
+```
 
 7. **Given an array of type [Int], return the second smallest value in the array**
 
 Input: `[3,6,1,9,4,8]`
 
 Output: `3`
+# Answer
+```swift
+var smallestInArray2 = [3,6,1,9,4,8]
+var smallestNum2 = smallestInArray2[0]
+for num in smallestInArray2 {
+    if num <= smallestNum2 {
+        smallestNum2 = num
+    }
+}
+
+var secondSmallestNum = smallestInArray2[0]
+for num in smallestInArray2 where num > smallestNum2 {
+    if num <= secondSmallestNum {
+        secondSmallestNum = num
+    }
+}
+```
 
 ## Optionals
 
@@ -77,19 +152,48 @@ Output: `3`
 Input: `[nil, "We", "come", nil, "in", "peace"]`
 
 Output: `["We", "come", "in", "peace"]`
-
+# Answer
+```swift
+var stringArray = [nil, "We", "come", nil, "in", "peace"]
+var nonNilArray = [String]()
+for string in stringArray {
+    if let validString = string {
+        nonNilArray.append(validString)
+    }
+}
+print(nonNilArray)
+```
 2. **Given an array of type [String?]? return an array of [String] removing all nil values**
 
 Input: `nil`
 
 Output: `[]`
-
+# Answer
+```swift
+var nilArray = [String?]()
+var removedNil = [String]()
+for string in nilArray {
+    if let validString = string {
+        removedNil.append(validString)
+    }
+}
+```
 3. **Given an array of type [Int?] return the sum of all non-nil values.  Use guard statements in your solution.**
 
 Input: `[4, nil, 9, 5, nil]`
 
 Output: `18`
-
+# Answer
+```swift
+var intArr = [4, nil, 9, 5, nil]
+var intSum = 0
+for num in intArr {
+    guard let num = num else {
+        continue
+    }
+    intSum += num
+}
+```
 4. **Given an array of type [Int?]? return the sum of all non-nil values.  Use guard statements in your solution.**
 
 Input: `nil`
@@ -101,7 +205,18 @@ Output: `0`
 Input: `[1, 1, nil, 3, 5, nil, 1, nil, 3, 5, nil, 5, nil, 3], 1`
 
 Output: `24`
-
+# Answer
+```swift
+var intArr2 = [1, 1, nil, 3, 5, nil, 1, nil, 3, 5, nil, 5, nil, 3]
+var intSum2 = 0
+for num in intArr2 {
+    if let validNum = num {
+        if validNum != 1 {
+            intSum2 += validNum
+        }
+    }
+}
+```
 
 ## Dictionaries
 
