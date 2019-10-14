@@ -225,13 +225,49 @@ for num in intArr2 {
 Input: `["apple", "apple", "banana", "banana", "banana", "cake", "cake"]`
 
 Output: `["apple", "banana", "cake"]`
-
+# Answer
+```swift
+var fruitArr = ["apple", "apple", "banana", "banana", "banana", "cake", "cake"]
+var fruitSet = Set(fruitArr)
+var fruitArrNoDuplicates = Array(fruitSet.sorted())
+print(fruitArrNoDuplicates)
+```
 2. **Given a String, find the most frequently occurring letter**
 
 Input: `Never trust a computer you can't throw out a window ~ Steve Wozniak`
 
 Output: `t`
+# Answer 
+```swift
+var wozQuote = "Never trust a computer you can't throw out a window ~ Steve Wozniak"
+var wozLowercased = wozQuote.lowercased()
+var countDict = [Character: Int]()
+for letter in wozLowercased {
+    if let countNum = countDict[letter] {
+        countDict[letter] = countNum + 1
+    } else {
+        countDict[letter] = 1
+    }
+}
+print(countDict)
+var mostOccurences = 0
+for (char, count) in countDict {
+    if char != " " {
+        if count >= mostOccurences {
+            mostOccurences = count
+        }
+    }
+}
+print(mostOccurences)
+var mostLetter: Character = " "
 
+for (char, count) in countDict {
+    if count == mostOccurences {
+        mostLetter = char
+    }
+}
+print(mostLetter)
+```
 3. **Given an array of type [Int], return a copy of the array that contains only elements that appear at least twice**
 
 Input: `[1,1,2,3,3,3,4,5,6,6,7]`
