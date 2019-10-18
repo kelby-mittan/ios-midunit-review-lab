@@ -273,6 +273,29 @@ print(mostLetter)
 Input: `[1,1,2,3,3,3,4,5,6,6,7]`
 
 Output: `[1,3,6]`
+# Answer
+```swift
+var intergerArr = [1,1,2,3,3,3,4,5,6,6,7]
+var intsOfTwoOrMore = [Int]()
+func freqOfInt(arr: [Int]) -> [Int: Int] {
+    var freqDict = [Int: Int]()
+    for num in arr {
+        if let count = freqDict[num] {
+            freqDict[num] = count + 1
+        } else {
+            freqDict[num] = 1
+        }
+    }
+    return freqDict
+}
+
+for element in freqOfInt(arr: intergerArr) {
+    if element.value >= 2 {
+        intsOfTwoOrMore.append(element.key)
+    }
+}
+print(intsOfTwoOrMore.sorted())
+```
 
 4. **Given a String, find the second most frequently occurring letter in a string**
 
@@ -280,6 +303,37 @@ Input: `Never trust a computer you can't throw out a window ~ Steve Wozniak`
 
 Output `o`
 
+# Answer 
+```swift
+var wozQuote = "Never trust a computer you can't throw out a window ~ Steve Wozniak"
+var wozLowercased = wozQuote.lowercased()
+var countDict = [Character: Int]()
+for letter in wozLowercased {
+    if let countNum = countDict[letter] {
+        countDict[letter] = countNum + 1
+    } else {
+        countDict[letter] = 1
+    }
+}
+print(countDict)
+var mostOccurences = 0
+for (char, count) in countDict {
+    if char != " " {
+        if count >= mostOccurences {
+            mostOccurences = count
+        }
+    }
+}
+print(mostOccurences)
+var mostLetter: Character = " "
+
+for (char, count) in countDict {
+    if count == mostOccurences - 1 {
+        mostLetter = char
+    }
+}
+print(mostLetter)
+```
 
 ## Closures
 
@@ -288,25 +342,54 @@ Output `o`
 Input: `["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]`
 
 Output: `["Never", "a", "a", "can\'t", "computer", "out", "throw", "trust", "window", "you"]`
-
+# Answer
+```swift
+let strArr = ["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]
+let sortedStrArr = strArr.sorted()
+print(sortedStrArr)
+```
 2. **Given an array of type [String], return an array that contains the Strings sorted by length**
 
 Input: `["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]`
 
 Output: `["a", "a", "you", "out", "Never", "trust", "can\'t", "throw", "window", "computer"]`
-
+# Answer
+```swift
+var sortedLengthArr = [String]()
+let strArr2 = ["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]
+sortedLengthArr = strArr2.sorted() { $0.count < $1.count }
+print(sortedLengthArr)
+```
 3. **Given an array of type [String], return an array containing all Strings at least 4 characters long**
 
 Input: `["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]`
 
 Output: `["Never", "trust", "computer", "can\'t", "throw", "window"]`
-
+# Answer
+```swift
+var sortedByFour = [String]()
+let strArr3 = ["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]
+for word in strArr3 {
+    if word.count >= 4 {
+        sortedByFour.append(word)
+    }
+}
+print(sortedByFour)
+```
 4. **Given an array of type [String], return a String containing all of the Strings from the array combined and separated by spaces.  Do this first without using the `joined(separator:) method`**
 
 Input: `["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]`
 
 Output: `Never trust a computer you can't throw out a window`
-
+# Answer
+```swift
+var strArr4 = ["Never", "trust", "a", "computer", "you", "can't", "throw", "out", "a", "window"]
+var arr4WithSpaces = [String]()
+for word in strArr4 {
+    arr4WithSpaces.append(word + " ")
+}
+print(arr4WithSpaces.joined())
+```
 
 ## Enums
 
@@ -323,7 +406,30 @@ enum NumberType {
 Input: `[1,2,3,4,5,6], NumberType.odd`
 
 Output: `[1,3,5]`
-
+# Answer
+```swift
+enum NumberType {
+    case even
+    case odd
+}
+func evenOrOdd(arr: [Int], eOrO: NumberType) -> [Int] {
+    var outputArr = [Int]()
+    for num in arr {
+        switch eOrO {
+        case .even:
+            if num % 2 == 0 {
+                outputArr.append(num)
+            }
+        case .odd:
+            if num % 2 != 0 {
+                outputArr.append(num)
+            }
+        }
+    }
+    return outputArr
+}
+print(evenOrOdd(arr: [1,2,3,4,5,6], eOrO: .odd))
+```
 2. **Given a String and an instance of StringType (defined below), return the String either lowercased or uppercased**
 
 ```swift
@@ -336,7 +442,24 @@ enum StringType {
 Input: `"Design is not just what it looks like and feels like. Design is how it works", .uppercase`
 
 Output: ``"DESIGN IS NOT JUST WHAT IT LOOKS LIKE AND FEELS LIKE. DESIGN IS HOW IT WORKS"``
-
+# Answer
+```swift
+enum StringType {
+    case lowercase
+    case uppercase
+}
+func lowerOrUpper(takeIn: String, lowOrUp: StringType) -> String {
+    var strAction = String()
+    switch lowOrUp {
+    case .lowercase:
+        strAction = takeIn.lowercased()
+    case .uppercase:
+       strAction = takeIn.uppercased()
+    }
+    return strAction
+}
+print(lowerOrUpper(takeIn: "Design is not just what it looks like and feels like. Design is how it works", lowOrUp: .uppercase))
+```
 3. **Given an array of type [FileStatus] (defined below) and an Int, return an array containing only files that were saved more than that many times**
 
 ```swift
