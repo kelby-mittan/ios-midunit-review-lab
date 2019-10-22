@@ -21,14 +21,27 @@ helloThere = helloThere.uppercased()
 Input: `Hello, there`
 
 Output: `HeLlO, tHeRe`
-
-
+# Answer
+```swift
+var helloThereEveryOther = "Hello, there"
+var helloThereArr = Array(helloThereEveryOther)
+for (i, _) in helloThereArr.enumerated() {
+    if i % 2 == 0 {
+        helloThereArr[i].uppercased()
+    }
+}
+print(String(helloThereArr))
+```
 3. **Given a String, return a String with all occurrences of a given letter removed**
 
 Input: `Hello, there`
 
 Output: `Hllo, thr`
-
+# Answer
+```swift
+var helloThereString = "Hello, there"
+let stringWithoutE = helloThereString.replacingOccurrences(of: "e", with: "")
+```
 
 ## Arrays
 
@@ -85,6 +98,8 @@ print(sum)
 Input: `[3,4.5,7.5,2,1]`
 
 Output: `3.6`
+
+# Answer
 ```swift
 var doubleArr: [Double] = [3,4.5,7.5,2,1]
 var doubleSum: Double = 0
@@ -100,7 +115,7 @@ print(doubleAvg)
 Input: `[3,4.5,7.5,2,1], 3`
 
 Output: `12`
-
+# Answer
 ```swift
 var doubleArray: [Double] = [3,4.5,7.5,2,1]
 var doubleSum2: Double = 0
@@ -114,6 +129,7 @@ for num in doubleArray where num > 3 {
 Input: `[3,4.5,7.5,2,1]`
 
 Output: `202.5`
+# Answer
 ```swift
 var doubleArray3: [Double] = [3,4.5,7.5,2,1]
 var doubleProduct: Double = 1
